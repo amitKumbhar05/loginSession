@@ -4,13 +4,14 @@ import cors from 'cors'
 // import bodyParser from 'body-parser';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import bcrypt from 'bcrypt'
 
 const app = express();
 const port = 4000;
 
 
 app.use(cors({
-    origin:["http://localhost:5173"],
+    origin:["http://localhost:5173","http://localhost:5173/signup.html"],
     methods:['GET','POST'],
     credentials:true
 }));
@@ -34,7 +35,8 @@ app.post('/login',async(req,res)=>{
         const data = await userData.findOne({username:username})
         if(data)
         {   
-            if(data.password==password)
+            const passwordMatch  = await bcrypt.compare(password,data.password)
+            if(passwordMatch)
             {
                 req.session.user = data
                 res.json(req.session.user)
@@ -74,6 +76,24 @@ app.get('/login',(req,res)=>{
     {
         res.send({logged:false})
     }
+})
+
+app.post('/signup', async(req,res)=>{
+    const {username,password} = req.body
+
+    const hashedpass = await bcrypt.hash(password,10);
+    
+    const user = await userData.insertMany({username:username,password:hashedpass})
+
+    if(user)
+    {
+        res.send('ok')
+    }
+    else
+    {
+        res.send('error')
+    }
+
 })
 
 
