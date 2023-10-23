@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Type" content="text/html">
+      <link rel="stylesheet" href="style.css">
+      <title>cookies test</title>
+  </head>
+  <body>
+      <div class="flex flex-col justify-center items-center h-[100vh] w-full">
+          <div class="m-5 w-[60%] justify-center shadow-sm shadow-black">
+            <form class="w-full m-2" action="">
+              <h1 class="text-xl font-bold ">username :</h1>
+              <input spellcheck="false" type="text" placeholder="Username" class="username outline rounded-lg mt-1 p-2 w-1/2">
+              <h1 class="text-xl font-bold ">password :</h1>
+              <input type="password" placeholder="password" class="password outline rounded-lg mt-1 p-2 w-1/2">
+              <button id="btnlg" class="block bg-blue-700 text-white p-4 mt-2 ml-1 rounded-lg text-xl font-bold cursor-pointer">Submit</button>
+              <button id="btnlo" class="block bg-red-700 text-white p-4 mt-2 ml-1 rounded-lg text-xl font-bold cursor-pointer">Log Out</button>
+            </form>
+          </div>
+          <div class="h-[200px] w-[60%] flex flex-col items-center">
+              <h1 id="login" class="text-2xl font-bold m-2">please Login</h1>
+              
+              <h1 id="user" class="text-2xl font-bold m-2">logged in</h1>
+          </div>
+        </div>
+        <script type="module" src="script.js"></script>
+  </body>
+  </html>
+</html>
