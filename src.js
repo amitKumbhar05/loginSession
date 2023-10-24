@@ -1,5 +1,9 @@
 import axios from "axios"
 
+import Swal from 'sweetalert2'
+
+
+
 const username = document.querySelector('.usern')
 const password = document.querySelector('.pass')
 const signup = document.querySelector('#btnsg')
@@ -13,13 +17,21 @@ signup.addEventListener('click',(e)=>{
     }).then((res)=>{
         if(res.data=='ok')
         {
-            alert('user added sucessfully!!')
+            Swal.fire(
+                'Sucess',
+                'User Added Sucessfully!!',
+                'success'
+            )
             username.value=''
             password.value=''
         }
         else
         {
-            alert("error user not added!!")
+            Swal.fire(
+                'Not Good!',
+                'User Not Added',
+                'error'
+            )
         }
     }).catch((error)=>{
         console.error(error);

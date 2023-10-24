@@ -80,17 +80,21 @@ app.get('/login',(req,res)=>{
 
 app.post('/signup', async(req,res)=>{
     const {username,password} = req.body
-
-    const hashedpass = await bcrypt.hash(password,10);
+    try {
+        const hashedpass = await bcrypt.hash(password,10);
+        
+        const user = await userData.insertMany({username:username,password:hashedpass})
     
-    const user = await userData.insertMany({username:username,password:hashedpass})
-
-    if(user)
-    {
-        res.send('ok')
-    }
-    else
-    {
+        if(user)
+        {
+            res.send('ok')
+        }
+        else
+        {
+            res.send('error')
+        }
+        
+    } catch (error) {
         res.send('error')
     }
 

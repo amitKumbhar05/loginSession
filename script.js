@@ -1,4 +1,6 @@
 import axios from "axios";
+import Swal from 'sweetalert2'
+
 
 const username = document.querySelector('.username')
 const password = document.querySelector('.password')
@@ -36,6 +38,11 @@ submit.addEventListener('click',(e)=>{
         login.innerText= (res.data.username || res.data)
         if(res.data?.username==username.value)
         {
+            Swal.fire(
+                "Sucess",
+                "Logged In",
+                "success"
+            )
             user.style.display='block';
             logout.style.display = 'block';
             submit.style.display = 'none';
